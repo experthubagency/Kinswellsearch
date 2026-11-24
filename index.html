@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinswell Search Group | Executive Search & Strategic Talent Advisory</title>
+  <meta name="description" content="Kinswell Search Group is a boutique executive search and talent advisory desk placing mid-to-senior corporate leadership across EMEA and North America." />
+
+  <!-- Favicon & Social Share Branding (Absolute URLs for LinkedIn, X, WhatsApp) -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kinswellsearch.com/" />
+  <meta property="og:title" content="Kinswell Search Group | Executive Search & Strategic Talent Advisory" />
+  <meta property="og:description" content="Boutique executive search and talent advisory placing mid-to-senior corporate leadership across EMEA and North America." />
+  <meta property="og:image" content="https://kinswellsearch.com/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kinswellsearch.com/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#060C17', 900: '#0B1628', 800: '#13233F', 700: '#1E355C' },
+            gold: { 400: '#D6B778', 500: '#C5A059', 600: '#A37E38' },
+            ivory: '#F8F7F4'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .modal-backdrop { background: rgba(6, 12, 23, 0.78); backdrop-filter: blur(4px); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-ivory text-navy-900 font-sans antialiased selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- Top Utility Bar -->
+  <div class="bg-navy-950 text-slate-300 text-xs py-2.5 px-6 border-b border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+        <span class="tracking-widest uppercase text-[11px] text-gold-400 font-semibold">EMEA • UK • North America</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-[11px]">
+        <a href="mailto:marcus@kinswellsearch.com" class="hover:text-gold-400 transition">marcus@kinswellsearch.com</a>
+        <span class="text-white/20 hidden sm:inline">|</span>
+        <a href="mailto:talent@kinswellsearch.com" class="hover:text-gold-400 transition">talent@kinswellsearch.com</a>
+        <span class="text-white/20 hidden sm:inline">|</span>
+        <a href="mailto:clients@kinswellsearch.com" class="hover:text-gold-400 transition hidden md:inline">clients@kinswellsearch.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur border-b border-navy-900/10">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <img src="/favicon.png" alt="Kinswell Search Group Emblem" class="w-10 h-10 object-cover border border-gold-500/40" />
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-tight text-navy-900 block leading-none">KINSWELL</span>
+          <span class="text-[10px] tracking-[0.26em] uppercase text-navy-700 font-semibold block mt-0.5">Search Group</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-navy-800">
+        <a href="#mandates" class="hover:text-gold-600 transition">Active Mandates</a>
+        <a href="#diagnostic" class="hover:text-gold-600 transition">CV Readiness</a>
+        <a href="#briefings" class="hover:text-gold-600 transition">Market Briefings</a>
+        <a href="#desks" class="hover:text-gold-600 transition">Practice Desks</a>
+        <a href="#intake" onclick="switchIntakeTab('candidate')" class="px-5 py-2.5 bg-navy-900 text-white hover:bg-navy-800 transition font-semibold text-xs uppercase tracking-wider">
+          Submit Profile
+        </a>
+      </nav>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <a href="#intake" onclick="switchIntakeTab('candidate')" class="px-3.5 py-2 bg-navy-900 text-white text-[11px] font-semibold uppercase tracking-wider">
+          Submit CV
+        </a>
+        <button id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"
+          class="p-2 border border-navy-900/20 text-navy-900 hover:border-gold-600 transition">
+          <svg id="menuIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-ivory border-t border-navy-900/10 px-6 py-5 space-y-4 text-sm font-medium text-navy-900 shadow-lg">
+      <a href="#mandates" class="mobile-nav-link block py-1.5 hover:text-gold-600">Active Mandates</a>
+      <a href="#diagnostic" class="mobile-nav-link block py-1.5 hover:text-gold-600">CV Readiness Check</a>
+      <a href="#briefings" class="mobile-nav-link block py-1.5 hover:text-gold-600">Market Briefings</a>
+      <a href="#desks" class="mobile-nav-link block py-1.5 hover:text-gold-600">Leadership & Practice Desks</a>
+      <div class="pt-3 border-t border-navy-900/10 flex flex-col gap-2.5">
+        <a href="#intake" onclick="switchIntakeTab('candidate')" class="mobile-nav-link text-center py-3 bg-navy-900 text-white text-xs font-bold uppercase tracking-widest">
+          Candidate Intake
+        </a>
+        <a href="#intake" onclick="switchIntakeTab('employer')" class="mobile-nav-link text-center py-3 border border-navy-900/25 text-navy-900 text-xs font-bold uppercase tracking-widest">
+          Employer Mandate Brief
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-navy-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-8">
+        <p class="text-gold-400 text-xs uppercase tracking-[0.25em] font-semibold mb-5">
+          Boutique Executive Search • Corporate Leadership • Talent Advisory
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.06] tracking-tight mb-6">
+          Connecting high-growth enterprises with vetted corporate talent.
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-9">
+          Kinswell Search Group executes confidential, direct-headhunting mandates across Operations, Commercial Strategy, Finance, Technology, and People Leadership—pairing rigorous employer shortlisting with executive candidate readiness.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#mandates" class="px-7 py-4 bg-gold-500 text-navy-950 font-semibold text-xs uppercase tracking-widest hover:bg-gold-400 transition">
+            Explore Active Mandates
+          </a>
+          <a href="#intake" onclick="switchIntakeTab('employer')" class="px-7 py-4 border border-white/25 text-white font-semibold text-xs uppercase tracking-widest hover:border-gold-400 hover:text-gold-400 transition">
+            For Employers: Initiate Search
+          </a>
+        </div>
+      </div>
+
+      <!-- Grounded Operating Standards Panel -->
+      <div class="lg:col-span-4 bg-navy-950/75 border border-gold-500/30 p-7 space-y-5">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-gold-400 font-semibold border-b border-white/10 pb-3">Search Methodology</p>
+        <div class="space-y-4">
+          <div class="flex gap-3">
+            <span class="text-gold-400 font-serif font-bold text-lg leading-none">01</span>
+            <div>
+              <span class="text-sm font-semibold text-white block">Direct Market Mapping</span>
+              <span class="text-xs text-slate-400">Targeted headhunting beyond public job boards.</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-gold-400 font-serif font-bold text-lg leading-none">02</span>
+            <div>
+              <span class="text-sm font-semibold text-white block">Calibrated Shortlists</span>
+              <span class="text-xs text-slate-400">Every profile vetted for commercial impact & ATS clarity.</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-gold-400 font-serif font-bold text-lg leading-none">03</span>
+            <div>
+              <span class="text-sm font-semibold text-white block">Strict Confidentiality</span>
+              <span class="text-xs text-slate-400">Zero third-party distribution without candidate sign-off.</span>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-gold-400 font-serif font-bold text-lg leading-none">04</span>
+            <div>
+              <span class="text-sm font-semibold text-white block">Cross-Border Coverage</span>
+              <span class="text-xs text-slate-400">Hybrid & remote mandates across UK, EMEA & North America.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Mandate Board -->
+  <section id="mandates" class="py-20 md:py-24 px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div class="max-w-xl">
+        <p class="text-gold-600 text-xs uppercase tracking-[0.22em] font-bold mb-2">Live Search Desk</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-900">Active Confidential Mandates</h2>
+      </div>
+      <div class="w-full md:w-72">
+        <input id="mandateSearch" type="text" placeholder="Search role, ref ID, or location..."
+          class="w-full px-4 py-2.5 bg-white border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+      </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div id="filterPills" class="flex flex-wrap gap-2 mb-8">
+      <button data-cat="All" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-navy-900 text-white">All Practices</button>
+      <button data-cat="Operations" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600">Operations</button>
+      <button data-cat="Commercial" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600">Commercial & Sales</button>
+      <button data-cat="Technology" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600">Tech & Product</button>
+      <button data-cat="Finance" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600">Finance & Strategy</button>
+      <button data-cat="People" class="filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600">People & HR</button>
+    </div>
+
+    <!-- Mandate Cards Grid -->
+    <div id="mandateGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- Interactive CV Readiness Diagnostic -->
+  <section id="diagnostic" class="bg-navy-950 text-white py-20 md:py-24 px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-5">
+        <p class="text-gold-400 text-xs uppercase tracking-[0.22em] font-semibold mb-3">Candidate Calibration</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">
+          Enterprise Shortlist Readiness Check
+        </h2>
+        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+          Before our partners present a candidate to a hiring committee, every CV is benchmarked against enterprise ATS parsing and executive framing standards. Check the criteria your current CV meets to see your readiness score.
+        </p>
+
+        <!-- Live Score Card -->
+        <div class="bg-navy-900 border border-gold-500/35 p-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold">Your Readiness Score</span>
+            <span id="diagScoreText" class="font-serif text-3xl font-bold text-gold-400">0%</span>
+          </div>
+          <div class="w-full h-2 bg-navy-950 overflow-hidden mb-4">
+            <div id="diagBar" class="h-full bg-gold-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <p id="diagFeedback" class="text-xs text-slate-300 leading-relaxed mb-5">
+            Select the benchmarks on the right to evaluate whether your current CV is ready for direct employer presentation.
+          </p>
+          <button onclick="requestCVReviewFromDiagnostic()" class="w-full py-3 bg-gold-500 text-navy-950 font-semibold text-xs uppercase tracking-widest hover:bg-gold-400 transition">
+            Request Confidential CV Evaluation
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-3.5" id="diagnosticList">
+        <label class="flex items-start gap-4 p-5 bg-navy-900 border border-white/10 cursor-pointer hover:border-gold-500/40 transition">
+          <input type="checkbox" class="diag-check mt-1 w-4 h-4 accent-gold-500" />
+          <div>
+            <span class="font-semibold text-sm text-white block">Quantified Commercial & Operational Outcomes</span>
+            <span class="text-xs text-slate-400">At least 70% of your bullet points cite measurable revenue, cost savings, KPIs, or team scale rather than generic job duties.</span>
+          </div>
+        </label>
+        <label class="flex items-start gap-4 p-5 bg-navy-900 border border-white/10 cursor-pointer hover:border-gold-500/40 transition">
+          <input type="checkbox" class="diag-check mt-1 w-4 h-4 accent-gold-500" />
+          <div>
+            <span class="font-semibold text-sm text-white block">Single-Column Enterprise ATS Formatting</span>
+            <span class="text-xs text-slate-400">Free of multi-column graphic templates, tables, icons, or skill-rating bars that scramble enterprise Workday/Greenhouse parsers.</span>
+          </div>
+        </label>
+        <label class="flex items-start gap-4 p-5 bg-navy-900 border border-white/10 cursor-pointer hover:border-gold-500/40 transition">
+          <input type="checkbox" class="diag-check mt-1 w-4 h-4 accent-gold-500" />
+          <div>
+            <span class="font-semibold text-sm text-white block">6-Second Executive Positioning Summary</span>
+            <span class="text-xs text-slate-400">Your top third immediately anchors your seniority level, core domain authority, and target mandate without buzzword filler.</span>
+          </div>
+        </label>
+        <label class="flex items-start gap-4 p-5 bg-navy-900 border border-white/10 cursor-pointer hover:border-gold-500/40 transition">
+          <input type="checkbox" class="diag-check mt-1 w-4 h-4 accent-gold-500" />
+          <div>
+            <span class="font-semibold text-sm text-white block">Role-Specific Keyword & Taxonomy Alignment</span>
+            <span class="text-xs text-slate-400">Job titles and competencies mirror current 2026 international corporate standards for the exact roles you are targeting.</span>
+          </div>
+        </label>
+        <label class="flex items-start gap-4 p-5 bg-navy-900 border border-white/10 cursor-pointer hover:border-gold-500/40 transition">
+          <input type="checkbox" class="diag-check mt-1 w-4 h-4 accent-gold-500" />
+          <div>
+            <span class="font-semibold text-sm text-white block">LinkedIn & CV Narrative Consistency</span>
+            <span class="text-xs text-slate-400">Dates, titles, and headline positioning match 100% between your PDF CV and LinkedIn profile during recruiter background checks.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Briefings (Readable Editorial Modals) -->
+  <section id="briefings" class="py-20 md:py-24 px-6 max-w-6xl mx-auto">
+    <div class="mb-12">
+      <p class="text-gold-600 text-xs uppercase tracking-[0.22em] font-bold mb-2">Thought Leadership</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-900">Market Briefings & Hiring Insights</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-7">
+      <article class="bg-white border border-navy-900/12 p-7 flex flex-col justify-between">
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold">Briefing • Q4 2026</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mt-2 mb-3">Why Qualified Mid-to-Senior Profiles Fail Shortlisting</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+            An inside look at how corporate hiring committees filter 200+ applicants down to a 5-person shortlist—and the structural CV mistakes that eliminate strong operators early.
+          </p>
+        </div>
+        <button onclick="openBriefing(0)" class="text-left text-xs uppercase tracking-widest font-bold text-navy-900 hover:text-gold-600 transition">
+          Read Full Briefing →
+        </button>
+      </article>
+
+      <article class="bg-white border border-navy-900/12 p-7 flex flex-col justify-between">
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold">Briefing • Q4 2026</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mt-2 mb-3">Navigating Confidential & Unadvertised Mandates</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+            Over 60% of senior corporate roles are never posted publicly. Here is how retained search desks map passive talent and evaluate profiles before outreach.
+          </p>
+        </div>
+        <button onclick="openBriefing(1)" class="text-left text-xs uppercase tracking-widest font-bold text-navy-900 hover:text-gold-600 transition">
+          Read Full Briefing →
+        </button>
+      </article>
+
+      <article class="bg-white border border-navy-900/12 p-7 flex flex-col justify-between">
+        <div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold">Briefing • Q4 2026</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mt-2 mb-3">2026 Compensation & Remote EMEA Benchmarking</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-6">
+            Key shifts in hybrid leadership expectations, cross-border compensation bands, and how candidates can anchor salary discussions with data.
+          </p>
+        </div>
+        <button onclick="openBriefing(2)" class="text-left text-xs uppercase tracking-widest font-bold text-navy-900 hover:text-gold-600 transition">
+          Read Full Briefing →
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Leadership & Verified Domain Desks -->
+  <section id="desks" class="py-16 bg-white border-y border-navy-900/10 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-10">
+        <p class="text-gold-600 text-xs uppercase tracking-[0.22em] font-bold mb-2">Verified Directory</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-900">Leadership & Practice Desks</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-7">
+        <div class="bg-ivory border border-navy-900/12 p-7">
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold block mb-1">Managing Partner</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">Marcus Vance</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-5">
+            Directs executive search engagements, commercial leadership placements, and strategic employer partnerships across EMEA and North America.
+          </p>
+          <a href="mailto:marcus@kinswellsearch.com" class="text-sm font-semibold text-navy-900 hover:text-gold-600 transition">
+            marcus@kinswellsearch.com
+          </a>
+        </div>
+
+        <div class="bg-ivory border border-navy-900/12 p-7">
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold block mb-1">Candidate Advisory Desk</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">Talent & CV Calibration</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-5">
+            Manages confidential talent network registration, active mandate applications, and pre-shortlist executive CV readiness assessments.
+          </p>
+          <a href="mailto:talent@kinswellsearch.com" class="text-sm font-semibold text-navy-900 hover:text-gold-600 transition">
+            talent@kinswellsearch.com
+          </a>
+        </div>
+
+        <div class="bg-ivory border border-navy-900/12 p-7">
+          <span class="text-[11px] uppercase tracking-widest text-gold-600 font-bold block mb-1">Employer Partnerships</span>
+          <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">Client Mandates Desk</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-5">
+            Dedicated desk for founders, boards, and HR directors initiating retained or contingent search assignments and market mapping.
+          </p>
+          <a href="mailto:clients@kinswellsearch.com" class="text-sm font-semibold text-navy-900 hover:text-gold-600 transition">
+            clients@kinswellsearch.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dual AJAX Intake Portal (Candidates & Employers) -->
+  <section id="intake" class="py-20 md:py-24 px-6 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <p class="text-gold-600 text-xs uppercase tracking-[0.22em] font-bold mb-2">Confidential Portal</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-900 mb-3">Engage the Kinswell Desk</h2>
+      <p class="text-sm text-slate-600 max-w-xl mx-auto">
+        All submissions are encrypted in transit and reviewed directly by our practice partners under strict non-disclosure standards.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="grid grid-cols-2 border border-navy-900/15 bg-white mb-0">
+      <button id="tabCandidate" onclick="switchIntakeTab('candidate')" class="py-4 text-xs font-bold uppercase tracking-widest bg-navy-900 text-white transition">
+        For Candidates (CV / Mandate)
+      </button>
+      <button id="tabEmployer" onclick="switchIntakeTab('employer')" class="py-4 text-xs font-bold uppercase tracking-widest text-navy-800 hover:bg-ivory transition">
+        For Employers (Hire Talent)
+      </button>
+    </div>
+
+    <!-- Form Container -->
+    <div class="bg-white border-x border-b border-navy-900/15 p-7 md:p-10">
+      <form id="kinswellForm" class="space-y-5">
+        <input type="hidden" id="formTrack" name="submission_track" value="Candidate" />
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Full Name *</label>
+            <input type="text" name="name" required placeholder="e.g. Daniel Mercer"
+              class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Email Address *</label>
+            <input type="email" name="email" required placeholder="name@domain.com"
+              class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+          </div>
+        </div>
+
+        <!-- Candidate Specific Fields -->
+        <div id="candidateFields" class="space-y-5">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Request Type *</label>
+              <select id="candidateRequestType" name="request_type"
+                class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600">
+                <option value="Talent Network + Confidential CV Readiness Review">Talent Network + CV Readiness Review</option>
+                <option value="Active Mandate Application">Active Mandate Application</option>
+                <option value="Executive Career & Positioning Advisory">Executive Career & Positioning Advisory</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Target Role / Mandate Ref ID *</label>
+              <input id="candidateTargetRole" type="text" name="target_role" required placeholder="e.g. Operations Manager or KSG-26-104"
+                class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">LinkedIn Profile or Cloud CV Link (Optional)</label>
+            <input type="url" name="profile_url" placeholder="https://linkedin.com/in/yourprofile"
+              class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+          </div>
+        </div>
+
+        <!-- Employer Specific Fields -->
+        <div id="employerFields" class="space-y-5 hidden">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Company / Organization *</label>
+              <input id="employerCompany" type="text" name="company" placeholder="e.g. Meridian Logistics Ltd"
+                class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Role(s) to Fill *</label>
+              <input id="employerRole" type="text" name="hiring_role" placeholder="e.g. Head of Commercial Operations"
+                class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-navy-900 mb-2">Brief Context & Objectives</label>
+          <textarea id="formNotes" name="notes" rows="4" placeholder="Share your target locations, timeline, or any specific feedback you need on your CV positioning..."
+            class="w-full px-4 py-3 bg-ivory border border-navy-900/20 text-sm focus:outline-none focus:border-gold-600"></textarea>
+        </div>
+
+        <button id="submitBtn" type="submit"
+          class="w-full py-4 bg-navy-900 text-white font-semibold text-xs uppercase tracking-[0.2em] hover:bg-navy-800 transition">
+          Submit Confidentially to Kinswell Desk
+        </button>
+
+        <!-- Direct PDF/DOCX Attachment Fallback -->
+        <div id="directEmailCallout" class="pt-4 border-t border-navy-900/10 text-center text-xs text-slate-600">
+          Prefer to attach a PDF or Word CV directly? Email it to
+          <a href="mailto:talent@kinswellsearch.com?subject=Confidential%20CV%20Submission" class="font-semibold text-navy-900 underline decoration-gold-500 hover:text-gold-600">
+            talent@kinswellsearch.com
+          </a>
+          with your target role or Mandate Ref ID in the subject line.
+        </div>
+      </form>
+
+      <!-- Instant Confirmation Receipt -->
+      <div id="formReceipt" class="hidden text-center py-8 space-y-4">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center font-bold text-xl">✓</div>
+        <h3 class="font-serif text-3xl font-bold text-navy-900">Submission Logged</h3>
+        <p class="text-sm text-slate-600 max-w-md mx-auto">
+          Your inquiry has been routed to the appropriate Kinswell Search Group desk. A partner will respond within 1–2 business days.
+        </p>
+        <div class="inline-block px-4 py-2 bg-ivory border border-navy-900/15 text-xs font-mono text-navy-900">
+          Tracking Reference: <strong id="receiptCode">KSG-REF-0000</strong>
+        </div>
+        <div class="pt-3">
+          <button onclick="resetForm()" class="text-xs uppercase tracking-widest font-bold text-gold-600 hover:underline">
+            Submit Another Inquiry
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-950 text-slate-400 py-14 px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-12 gap-8 pb-10 border-b border-white/10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3.5 mb-3">
+          <img src="/favicon.png" alt="Kinswell Search Group Emblem" class="w-11 h-11 object-cover border border-gold-500/40" />
+          <div>
+            <span class="font-serif text-2xl font-bold text-white tracking-tight block leading-none">KINSWELL</span>
+            <span class="text-[10px] tracking-[0.26em] uppercase text-gold-400 font-semibold block mt-1">Search Group</span>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 max-w-sm leading-relaxed">
+          Independent executive search, strategic talent mapping, and candidate readiness advisory serving EMEA and North America.
+        </p>
+      </div>
+      <div class="md:col-span-4 text-xs space-y-2">
+        <p class="text-white font-semibold uppercase tracking-wider mb-3">Verified Desks</p>
+        <p>Managing Partner: <a href="mailto:marcus@kinswellsearch.com" class="text-gold-400 hover:underline">marcus@kinswellsearch.com</a></p>
+        <p>Talent & CV Desk: <a href="mailto:talent@kinswellsearch.com" class="text-gold-400 hover:underline">talent@kinswellsearch.com</a></p>
+        <p>Employer Mandates: <a href="mailto:clients@kinswellsearch.com" class="text-gold-400 hover:underline">clients@kinswellsearch.com</a></p>
+      </div>
+      <div class="md:col-span-3 text-xs space-y-2.5">
+        <p class="text-white font-semibold uppercase tracking-wider mb-3">Governance & Legal</p>
+        <button onclick="openLegal('privacy')" class="block hover:text-gold-400 transition">Privacy & GDPR Notice</button>
+        <button onclick="openLegal('confidentiality')" class="block hover:text-gold-400 transition">Candidate Confidentiality Charter</button>
+        <button onclick="openLegal('eeo')" class="block hover:text-gold-400 transition">Equal Opportunity Statement</button>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto pt-6 text-xs text-slate-500 flex flex-wrap justify-between gap-4">
+      <span>© 2026 Kinswell Search Group. All rights reserved.</span>
+      <span>kinswellsearch.com</span>
+    </div>
+  </footer>
+
+  <!-- Universal Modal (Mandates, Briefings, Legal) -->
+  <div id="universalModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="bg-white max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-navy-900/20 shadow-2xl">
+      <div class="sticky top-0 bg-navy-900 text-white px-7 py-5 flex items-center justify-between">
+        <div>
+          <span id="modalEyebrow" class="text-[10px] uppercase tracking-[0.22em] text-gold-400 font-semibold block"></span>
+          <h3 id="modalTitle" class="font-serif text-2xl font-bold mt-0.5"></h3>
+        </div>
+        <button onclick="closeModal()" class="text-slate-300 hover:text-white text-2xl leading-none px-2">&times;</button>
+      </div>
+      <div id="modalBody" class="p-7 text-sm text-slate-700 leading-relaxed space-y-4"></div>
+      <div id="modalFooter" class="px-7 py-4 bg-ivory border-t border-navy-900/10 flex justify-end gap-3"></div>
+    </div>
+  </div>
+
+  <script>
+    // 0. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+
+    function toggleMobileMenu(forceClose = false) {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      const shouldOpen = forceClose ? false : !isOpen;
+      mobileMenu.classList.toggle('hidden', !shouldOpen);
+      menuIconOpen.classList.toggle('hidden', shouldOpen);
+      menuIconClose.classList.toggle('hidden', !shouldOpen);
+      mobileMenuBtn.setAttribute('aria-expanded', String(shouldOpen));
+    }
+
+    mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => toggleMobileMenu(true));
+    });
+
+    // 1. Active Mandates Dataset (General Corporate Roles)
+    const mandates = [
+      {
+        ref: 'KSG-26-104',
+        title: 'Director of Operations & Supply Chain',
+        category: 'Operations',
+        location: 'London / Hybrid (EMEA)',
+        comp: '£95k – £120k + Bonus',
+        summary: 'Leading multi-site operational efficiency, vendor governance, and logistics scaling for a mid-market industrial distribution group.',
+        requirements: ['8+ years in corporate operations or supply chain leadership', 'Proven track record of P&L ownership and margin optimization', 'Experience leading cross-functional teams of 30+']
+      },
+      {
+        ref: 'KSG-26-109',
+        title: 'Head of Commercial Strategy & Partnerships',
+        category: 'Commercial',
+        location: 'Remote (UK / US East)',
+        comp: '$130k – $155k OTE',
+        summary: 'Owning enterprise B2B growth, key account expansion, and commercial pricing architecture for a Series B SaaS platform.',
+        requirements: ['7+ years in B2B commercial leadership or strategic partnerships', 'Demonstrated success closing 6-figure enterprise agreements', 'Strong analytical forecasting and executive presentation skills']
+      },
+      {
+        ref: 'KSG-26-112',
+        title: 'Senior Product Manager (Core Platform)',
+        category: 'Technology',
+        location: 'Remote (EMEA)',
+        comp: '€85k – €105k + Equity',
+        summary: 'Driving roadmap execution, workflow automation, and enterprise customer adoption across a high-growth fintech product suite.',
+        requirements: ['5+ years in B2B product management', 'Experience shipping data-heavy enterprise workflows', 'Strong stakeholder alignment across engineering and design']
+      },
+      {
+        ref: 'KSG-26-118',
+        title: 'Finance Business Partner / FP&A Manager',
+        category: 'Finance',
+        location: 'Manchester / Hybrid',
+        comp: '£70k – £85k + Package',
+        summary: 'Partnering directly with the CFO to build board-level financial models, quarterly variance analysis, and capital allocation forecasts.',
+        requirements: ['ACA, ACCA, CIMA, or CPA qualified', '5+ years in commercial FP&A or corporate finance', 'Advanced financial modeling and ERP reporting proficiency']
+      },
+      {
+        ref: 'KSG-26-121',
+        title: 'Head of People & Talent Operations',
+        category: 'People',
+        location: 'New York / Hybrid',
+        comp: '$125k – $145k',
+        summary: 'Scaling organizational design, performance frameworks, and international hiring infrastructure for a 200-person corporate consultancy.',
+        requirements: ['7+ years in HRBP or People Operations leadership', 'Experience managing multi-jurisdiction compliance and benefits', 'Track record of building high-retention leadership cultures']
+      },
+      {
+        ref: 'KSG-26-126',
+        title: 'Senior Project & Transformation Manager',
+        category: 'Operations',
+        location: 'Remote (Global / EMEA)',
+        comp: '£75k – £92k',
+        summary: 'Leading enterprise ERP migration, business process redesign, and cross-departmental change management initiatives.',
+        requirements: ['PMP, PRINCE2, or Agile delivery certification', '6+ years delivering complex corporate transformation programs', 'Strong C-suite reporting and risk mitigation capability']
+      }
+    ];
+
+    let activeCategory = 'All';
+
+    function renderMandates() {
+      const query = document.getElementById('mandateSearch').value.toLowerCase();
+      const grid = document.getElementById('mandateGrid');
+      const filtered = mandates.filter(m => {
+        const matchCat = activeCategory === 'All' || m.category === activeCategory;
+        const matchText = (m.title + m.ref + m.location + m.category).toLowerCase().includes(query);
+        return matchCat && matchText;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 text-sm">No active mandates match your filter. Submit your profile below for upcoming confidential searches.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(m => `
+        <div class="bg-white border border-navy-900/12 p-6 flex flex-col justify-between hover:border-gold-500 transition shadow-sm">
+          <div>
+            <div class="flex items-center justify-between text-[11px] uppercase tracking-wider mb-3">
+              <span class="font-mono font-bold text-gold-600">${m.ref}</span>
+              <span class="px-2.5 py-0.5 bg-ivory text-navy-800 font-semibold">${m.category}</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-navy-900 leading-snug mb-2">${m.title}</h3>
+            <p class="text-xs text-slate-500 mb-4">${m.location} • <strong class="text-navy-800">${m.comp}</strong></p>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6">${m.summary}</p>
+          </div>
+          <button onclick="openMandate('${m.ref}')" class="w-full py-2.5 border border-navy-900 text-navy-900 text-xs font-bold uppercase tracking-wider hover:bg-navy-900 hover:text-white transition">
+            View Brief & Express Interest
+          </button>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeCategory = btn.dataset.cat;
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.className = 'filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-white border border-navy-900/15 text-navy-800 hover:border-gold-600';
+        });
+        btn.className = 'filter-btn px-4 py-2 text-xs font-semibold uppercase tracking-wider bg-navy-900 text-white';
+        renderMandates();
+      });
+    });
+    document.getElementById('mandateSearch').addEventListener('input', renderMandates);
+    renderMandates();
+
+    // 2. Interactive CV Readiness Diagnostic
+    const diagChecks = document.querySelectorAll('.diag-check');
+    function updateDiagnostic() {
+      const checked = Array.from(diagChecks).filter(c => c.checked).length;
+      const pct = Math.round((checked / diagChecks.length) * 100);
+      document.getElementById('diagScoreText').textContent = pct + '%';
+      document.getElementById('diagBar').style.width = pct + '%';
+      const fb = document.getElementById('diagFeedback');
+      if (pct === 0) {
+        fb.textContent = 'Select the benchmarks on the right to evaluate whether your current CV is ready for direct employer presentation.';
+      } else if (pct <= 40) {
+        fb.textContent = 'High Risk of ATS / Shortlist Rejection: Your profile likely needs structural reframing and quantified impact before being submitted to senior mandates.';
+      } else if (pct <= 80) {
+        fb.textContent = 'Moderate Readiness: Strong foundation, but addressing the remaining gaps will significantly increase interview conversion rates.';
+      } else {
+        fb.textContent = 'Shortlist Ready: Your CV aligns closely with enterprise hiring committee standards. Submit your profile below for active mandate matching.';
+      }
+    }
+    diagChecks.forEach(c => c.addEventListener('change', updateDiagnostic));
+
+    function requestCVReviewFromDiagnostic() {
+      const score = document.getElementById('diagScoreText').textContent;
+      switchIntakeTab('candidate');
+      document.getElementById('candidateRequestType').value = 'Talent Network + Confidential CV Readiness Review';
+      document.getElementById('formNotes').value = `Completed Kinswell Readiness Check (Score: ${score}). Requesting confidential CV review and mandate alignment.`;
+      document.getElementById('intake').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 3. Modals (Mandates, Briefings, Legal)
+    const modal = document.getElementById('universalModal');
+    function showModal(eyebrow, title, bodyHtml, footerHtml = '') {
+      document.getElementById('modalEyebrow').textContent = eyebrow;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = bodyHtml;
+      document.getElementById('modalFooter').innerHTML = footerHtml || `<button onclick="closeModal()" class="px-5 py-2.5 bg-navy-900 text-white text-xs font-bold uppercase tracking-wider">Close</button>`;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    function openMandate(ref) {
+      const m = mandates.find(x => x.ref === ref);
+      const reqList = m.requirements.map(r => `<li class="flex gap-2"><span class="text-gold-600 font-bold">•</span><span>${r}</span></li>`).join('');
+      showModal(
+        `Mandate Ref: ${m.ref} • ${m.category}`,
+        m.title,
+        `<p class="text-xs font-semibold text-navy-800 bg-ivory p-3 border border-navy-900/10">Location: ${m.location} &nbsp;|&nbsp; Compensation: ${m.comp}</p>
+         <p>${m.summary}</p>
+         <h4 class="font-bold text-navy-900 uppercase text-xs tracking-wider pt-2">Key Selection Criteria</h4>
+         <ul class="space-y-2">${reqList}</ul>`,
+        `<button onclick="closeModal()" class="px-5 py-2.5 border border-navy-900/20 text-xs font-bold uppercase tracking-wider">Close</button>
+         <button onclick="applyForMandate('${m.ref}', '${m.title}')" class="px-6 py-2.5 bg-gold-500 text-navy-950 text-xs font-bold uppercase tracking-wider hover:bg-gold-400">Express Interest</button>`
+      );
+    }
+
+    function applyForMandate(ref, title) {
+      closeModal();
+      switchIntakeTab('candidate');
+      document.getElementById('candidateRequestType').value = 'Active Mandate Application';
+      document.getElementById('candidateTargetRole').value = `${ref} — ${title}`;
+      document.getElementById('intake').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const briefings = [
+      {
+        title: 'Why Qualified Mid-to-Senior Profiles Fail Shortlisting',
+        body: `<p>Across corporate searches in 2026, hiring managers rarely suffer from a shortage of applicants—they suffer from signal-to-noise fatigue. When 200+ professionals apply for a single leadership or specialist role, initial screening takes less than 15 seconds per file.</p>
+               <p><strong>1. Duty-Based Descriptions vs. Commercial Outcomes:</strong> Listing "Responsible for managing operations" tells a hiring committee nothing about scale. Candidates who advance anchor every role with quantified metrics—budget managed, revenue influenced, or turnaround time reduced.</p>
+               <p><strong>2. ATS Parsing Failures:</strong> Multi-column graphic templates frequently scramble dates and job titles inside enterprise tracking systems. Clean, single-column executive typography remains the gold standard.</p>
+               <p><strong>3. Misaligned Positioning:</strong> If your top-third summary tries to appeal to every industry, it convinces none. Calibrating your narrative to a specific mandate tier is the fastest lever to double interview callbacks.</p>`
+      },
+      {
+        title: 'Navigating Confidential & Unadvertised Mandates',
+        body: `<p>More than 60% of mid-to-senior corporate roles—particularly replacement hires, regional expansions, and restructuring leads—are never advertised on public job boards.</p>
+               <p>Retained search firms build shortlists through direct market mapping and private talent networks. To remain visible to executive recruiters, ensure your LinkedIn headline reflects your exact functional authority and register your updated CV with specialist desks before you begin an active search.</p>`
+      },
+      {
+        title: '2026 Compensation & Remote EMEA Benchmarking',
+        body: `<p>Hybrid expectations have stabilized across London, New York, and major EMEA hubs, with most corporate leadership mandates requiring 2 days on-site or structured quarterly travel.</p>
+               <p>Candidates commanding top-quartile compensation packages in 2026 consistently demonstrate cross-functional commercial fluency—proving not only technical mastery in their vertical, but measurable impact on company-wide margin and retention.</p>`
+      }
+    ];
+
+    function openBriefing(idx) {
+      const b = briefings[idx];
+      showModal('Kinswell Market Briefing', b.title, b.body);
+    }
+
+    const legalDocs = {
+      privacy: {
+        title: 'Privacy & GDPR Notice',
+        body: `<p>Kinswell Search Group processes candidate and client data strictly for executive search, recruitment matching, and career advisory services in accordance with UK GDPR and international data protection standards.</p>
+               <p>We never sell, rent, or distribute candidate CVs to third-party employers without your explicit prior consent. You may request deletion of your profile at any time by emailing <strong>talent@kinswellsearch.com</strong>.</p>`
+      },
+      confidentiality: {
+        title: 'Candidate Confidentiality Charter',
+        body: `<p>Discretion is foundational to our practice. All candidate inquiries, CV evaluations, and active mandate discussions are held in strict confidence. Your identity and current employer details are never disclosed to a client hiring committee until you have reviewed the mandate brief and authorized formal presentation.</p>`
+      },
+      eeo: {
+        title: 'Equal Opportunity Statement',
+        body: `<p>Kinswell Search Group is committed to merit-based, inclusive talent acquisition. We evaluate all candidates solely on professional qualifications, demonstrated impact, and role alignment without regard to race, gender, religion, nationality, age, or disability.</p>`
+      }
+    };
+
+    function openLegal(key) {
+      const doc = legalDocs[key];
+      showModal('Governance & Compliance', doc.title, doc.body);
+    }
+
+    // 4. Dual Intake Tab Switching & Formspree AJAX Submission
+    function switchIntakeTab(track) {
+      const isCand = track === 'candidate';
+      document.getElementById('formTrack').value = isCand ? 'Candidate' : 'Employer';
+      document.getElementById('candidateFields').classList.toggle('hidden', !isCand);
+      document.getElementById('employerFields').classList.toggle('hidden', isCand);
+      document.getElementById('directEmailCallout').classList.toggle('hidden', !isCand);
+      document.getElementById('candidateTargetRole').required = isCand;
+      document.getElementById('employerCompany').required = !isCand;
+      document.getElementById('employerRole').required = !isCand;
+
+      document.getElementById('tabCandidate').className = isCand
+        ? 'py-4 text-xs font-bold uppercase tracking-widest bg-navy-900 text-white transition'
+        : 'py-4 text-xs font-bold uppercase tracking-widest text-navy-800 hover:bg-ivory transition';
+      document.getElementById('tabEmployer').className = !isCand
+        ? 'py-4 text-xs font-bold uppercase tracking-widest bg-navy-900 text-white transition'
+        : 'py-4 text-xs font-bold uppercase tracking-widest text-navy-800 hover:bg-ivory transition';
+    }
+
+    const form = document.getElementById('kinswellForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Transmitting Securely...';
+
+      try {
+        const res = await fetch('https://formspree.io/f/xrpedbor', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          const refCode = 'KSG-REF-' + Math.floor(1000 + Math.random() * 9000);
+          document.getElementById('receiptCode').textContent = refCode;
+          form.classList.add('hidden');
+          document.getElementById('formReceipt').classList.remove('hidden');
+        } else {
+          alert('Submission could not be completed. Please email talent@kinswellsearch.com directly.');
+        }
+      } catch (err) {
+        alert('Network error. Please try again or email talent@kinswellsearch.com directly.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Submit Confidentially to Kinswell Desk';
+      }
+    });
+
+    function resetForm() {
+      form.reset();
+      form.classList.remove('hidden');
+      document.getElementById('formReceipt').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
